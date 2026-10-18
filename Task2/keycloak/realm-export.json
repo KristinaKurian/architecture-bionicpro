@@ -1,0 +1,27 @@
+{
+  "realm": "reports-realm",
+  "enabled": true,
+  "roles": {"realm": [
+    {"name": "user"}, {"name": "prothetic_user"}, {"name": "administrator"}
+  ]},
+  "users": [
+    {"id": "11111111-1111-4111-8111-111111111111", "username": "user1", "enabled": true,
+     "email": "user1@example.test", "credentials": [
+       {"type": "password", "value": "demo-user1-only", "temporary": false}
+     ], "realmRoles": ["user", "prothetic_user"]},
+    {"id": "22222222-2222-4222-8222-222222222222", "username": "user2", "enabled": true,
+     "email": "user2@example.test", "credentials": [
+       {"type": "password", "value": "demo-user2-only", "temporary": false}
+     ], "realmRoles": ["user", "prothetic_user"]}
+  ],
+  "clients": [
+    {"clientId": "reports-bff", "enabled": true, "protocol": "openid-connect",
+     "publicClient": false, "clientAuthenticatorType": "client-secret",
+     "secret": "demo-bff-secret-change-before-deployment",
+     "standardFlowEnabled": true, "implicitFlowEnabled": false,
+     "directAccessGrantsEnabled": false, "serviceAccountsEnabled": false,
+     "redirectUris": ["http://localhost:8000/auth/callback"],
+     "webOrigins": ["http://localhost:3000"],
+     "attributes": {"pkce.code.challenge.method": "S256"}}
+  ]
+}
