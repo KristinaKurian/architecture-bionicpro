@@ -86,5 +86,6 @@ docker compose -f Task2/docker-compose.yaml exec airflow \
 Запуск тестов:
 
 ```bash
-docker compose -f Task2/docker-compose.yaml exec reports_api pytest -q
+docker compose -f Task2/docker-compose.yaml exec reports_api \
+  python -m pytest -q
 ```
