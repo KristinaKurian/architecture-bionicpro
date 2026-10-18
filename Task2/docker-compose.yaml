@@ -1,0 +1,140 @@
+# Run from repository root: docker compose -f Task2/docker-compose.yaml up --build
+# Development only: demo passwords, local HTTP, Keycloak start-dev.
+name: bionicpro-task2
+services:
+  source_db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: bionicpro
+      POSTGRES_USER: bionic
+      POSTGRES_PASSWORD: bionic-demo-local
+      TZ: UTC
+    volumes:
+      - source_pg_data:/var/lib/postgresql/data
+      - ./sql/01_sources.sql:/docker-entrypoint-initdb.d/01_sources.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bionic -d bionicpro"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:24.8
+    environment:
+      CLICKHOUSE_DB: bionicpro
+      CLICKHOUSE_USER: reporter
+      CLICKHOUSE_PASSWORD: report-demo-local
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: "1"
+    ports:
+      - "8123:8123"
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+      - ./sql/02_clickhouse.sql:/docker-entrypoint-initdb.d/02_reports.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "clickhouse-client --user reporter --password report-demo-local --query 'SELECT 1'"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_sessions:/data
+
+  keycloak_db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: keycloak_db
+      POSTGRES_USER: keycloak_user
+      POSTGRES_PASSWORD: demo-keycloak-db
+    volumes:
+      - keycloak_pg_data:/var/lib/postgresql/data
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:21.1
+    command: ["start-dev", "--import-realm"]
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: demo-admin-only
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://keycloak_db:5432/keycloak_db
+      KC_DB_USERNAME: keycloak_user
+      KC_DB_PASSWORD: demo-keycloak-db
+      KC_HOSTNAME_URL: http://localhost:8080
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./keycloak/realm-export.json:/opt/keycloak/data/import/realm-export.json:ro
+    depends_on:
+      - keycloak_db
+
+  reports_api:
+    build: ./reports_api
+    ports:
+      - "8000:8000"
+    environment:
+      SOURCE_DATABASE_URL: postgresql://bionic:bionic-demo-local@source_db:5432/bionicpro
+      CLICKHOUSE_HOST: clickhouse
+      CLICKHOUSE_USER: reporter
+      CLICKHOUSE_PASSWORD: report-demo-local
+      REDIS_URL: redis://redis:6379/0
+      PUBLIC_BASE_URL: http://localhost:8000
+      FRONTEND_URL: http://localhost:3000
+      OIDC_ISSUER: http://localhost:8080/realms/reports-realm
+      OIDC_INTERNAL_URL: http://keycloak:8080/realms/reports-realm
+      OIDC_CLIENT_ID: reports-bff
+      OIDC_CLIENT_SECRET: demo-bff-secret-change-before-deployment
+      COOKIE_SECURE: "false"
+    depends_on:
+      source_db:
+        condition: service_healthy
+      clickhouse:
+        condition: service_healthy
+      keycloak:
+        condition: service_started
+      redis:
+        condition: service_started
+
+  airflow:
+    build: ./airflow
+    command: ["airflow", "standalone"]
+    environment:
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "false"
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "false"
+      AIRFLOW__CORE__DEFAULT_TIMEZONE: UTC
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/airflow.db
+      SOURCE_DATABASE_URL: postgresql://bionic:bionic-demo-local@source_db:5432/bionicpro
+      CLICKHOUSE_HOST: clickhouse
+      CLICKHOUSE_USER: reporter
+      CLICKHOUSE_PASSWORD: report-demo-local
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags:ro
+      - airflow_data:/opt/airflow
+    depends_on:
+      source_db:
+        condition: service_healthy
+      clickhouse:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: Task2/frontend/Dockerfile
+      args:
+        REACT_APP_API_URL: http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - reports_api
+
+volumes:
+  source_pg_data:
+  clickhouse_data:
+  redis_sessions:
+  keycloak_pg_data:
+  airflow_data:

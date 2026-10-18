@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-10-18T12:00:00.000Z" agent="BionicPRO-Task2" version="24.7.17">
+  <diagram id="bionicpro-task2" name="Task 2 - Reports ETL C4">
+    <mxGraphModel dx="2400" dy="1550" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2550" pageHeight="1430" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="boundary" value="BionicPRO · регион РФ (хранение и обработка данных локально)" style="rounded=1;arcSize=9;whiteSpace=wrap;html=1;fillColor=#EAF3F9;strokeColor=#6B91AA;strokeWidth=2;dashed=1;dashPattern=8 5;align=left;verticalAlign=top;spacingTop=16;spacingLeft=17;fontSize=22;fontColor=#224E70;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="250" y="105" width="2240" height="1180" />
+        </mxCell>
+        <mxCell id="heading" value="Задание 2 · Подготовка и выдача отчётов: ETL + ClickHouse + API" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=25;fontColor=#253D57;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="20" width="2210" height="65" />
+        </mxCell>
+        <mxCell id="subtitle" value="C4 Container (TO-BE) · DAG по расписанию + проверка принадлежности протеза + готовность периода" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=16;fontColor=#253D57;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="65" y="78" width="1900" height="32" />
+        </mxCell>
+        <mxCell id="patient" value="&lt;b&gt;Пациент&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;#4B6074&quot;&gt;Получает отчёт&lt;/font&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#E6EFFF;strokeColor=#3768AB;strokeWidth=2;align=center;verticalAlign=middle;spacing=6;fontFamily=Arial;fontSize=17;fontColor=#18304B;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="25" y="265" width="185" height="105" />
+        </mxCell>
+        <mxCell id="mobile" value="&lt;b&gt;Android UI&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;#4B6074&quot;&gt;Кнопка «Скачать отчёт»&lt;/font&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#E6EFFF;strokeColor=#3768AB;strokeWidth=2;align=center;verticalAlign=middle;spacing=6;fontFamily=Arial;fontSize=17;fontColor=#18304B;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="310" y="190" width="285" height="116" />
+        </mxCell>
+        <mxCell id="web" value="&lt;b&gt;Web UI&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;#4B6074&quot;&gt;Локальная демонстрация&lt;/font&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#E6EFFF;strokeColor=#3768AB;strokeWidth=2;align=center;verticalAlign=middle;spacing=6;fontFamily=Arial;fontSize=17;fontColor=#18304B;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="310" y="376" width="285" height="112" />
+        </mxCell>
+        <mxCell id="device" value="&lt;b&gt;Бионический протез&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;#4B6074&quot;&gt;ESP32 / 4G&lt;/font&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#F4F2FA;strokeColor=#846FAD;strokeWidth=2;align=center;verticalAlign=middle;spacing=6;fontFamily=Arial;fontSize=17;fontColor=#18304B;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="1035" width="195" height="120" />
+        </mxCell>
+        <mxCell id="reportapi" value="&lt;b&gt;Reports API + BFF&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;#4B6074&quot;&gt;/auth/*, /reports&lt;br/&gt;Session cookie · AuthZ&lt;/font&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#DFF1EB;strokeColor=#277967;strokeWidth=2;align=center;verticalAlign=middle;spacing=6;fontFamily=Arial;fontSize=17;fontColor=#18304B;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="760" y="268" width="332" height="162" />
+        </mxCell>
+        <mxCell id="keycloak" value="&lt;b&gt;Keycloak RU&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;#4B6074&quot;&gt;OIDC Code + PKCE S256&lt;/font&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#F4F2FA;strokeColor=#846FAD;strokeWidth=2;align=center;verticalAlign=middle;spacing=6;fontFamily=Arial;fontSize=17;fontColor=#18304B;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1200" y="174" width="330" height="118" />
+        </mxCell>
+        <mxCell id="idp" value="&lt;b&gt;Внешний региональный IdP&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;#4B6074&quot;&gt;OIDC / LDAP / AD&lt;/font&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#F4F2FA;strokeColor=#846FAD;strokeWidth=2;align=center;verticalAlign=middle;spacing=6;fontFamily=Arial;fontSize=17;fontColor=#18304B;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1670" y="174" width="320" height="118" />
+        </mxCell>
+        <mxCell id="session" value="&lt;b&gt;Redis Session Store&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;#4B6074&quot;&gt;Opaque session → user identity&lt;/font&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#FFF2D6;strokeColor=#BB7C25;strokeWidth=2;align=center;verticalAlign=middle;spacing=6;fontFamily=Arial;fontSize=17;fontColor=#18304B;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1200" y="356" width="330" height="108" />
+        </mxCell>
+        <mxCell id="crm" value="&lt;b&gt;CRM / Patients&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;#4B6074&quot;&gt;Patient ↔ prosthesis&lt;br/&gt;Владение и идентичность&lt;/font&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#DFF1EB;strokeColor=#277967;strokeWidth=2;align=center;verticalAlign=middle;spacing=6;fontFamily=Arial;fontSize=17;fontColor=#18304B;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="365" y="638" width="322" height="148" />
+        </mxCell>
+        <mxCell id="telemetry_ingest" value="&lt;b&gt;Telemetry Ingest&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;#4B6074&quot;&gt;Поток 4G → DB&lt;/font&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#DFF1EB;strokeColor=#277967;strokeWidth=2;align=center;verticalAlign=middle;spacing=6;fontFamily=Arial;fontSize=17;fontColor=#18304B;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="365" y="1010" width="322" height="120" />
+        </mxCell>
+        <mxCell id="telemetry_db" value="&lt;b&gt;Telemetry DB&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;#4B6074&quot;&gt;Сырые события&lt;/font&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#FFF2D6;strokeColor=#BB7C25;strokeWidth=2;align=center;verticalAlign=middle;spacing=6;fontFamily=Arial;fontSize=17;fontColor=#18304B;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="760" y="1000" width="300" height="122" />
+        </mxCell>
+        <mxCell id="airflow" value="&lt;b&gt;Apache Airflow&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;#4B6074&quot;&gt;DAG: extract → aggregate&lt;br/&gt;→ join → load&lt;/font&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#FCE8DB;strokeColor=#C36A37;strokeWidth=2;align=center;verticalAlign=middle;spacing=6;fontFamily=Arial;fontSize=17;fontColor=#18304B;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1120" y="745" width="335" height="152" />
+        </mxCell>
+        <mxCell id="clickhouse" value="&lt;b&gt;ClickHouse OLAP&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;#4B6074&quot;&gt;user_prosthesis_reports&lt;br/&gt;+ etl_processed_days&lt;/font&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#FFF2D6;strokeColor=#BB7C25;strokeWidth=2;align=center;verticalAlign=middle;spacing=6;fontFamily=Arial;fontSize=17;fontColor=#18304B;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1650" y="700" width="357" height="180" />
+        </mxCell>
+        <mxCell id="keycloak_db" value="&lt;b&gt;Keycloak DB (RU)&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;#4B6074&quot;&gt;Региональные metadata&lt;/font&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#FFF2D6;strokeColor=#BB7C25;strokeWidth=2;align=center;verticalAlign=middle;spacing=6;fontFamily=Arial;fontSize=17;fontColor=#18304B;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1675" y="355" width="310" height="111" />
+        </mxCell>
+        <mxCell id="note" value="&lt;b&gt;Контроль доступа&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;#4B6074&quot;&gt;(iss, sub) → patient_id&lt;br/&gt;Проверка ownership по CRM&lt;br/&gt;нет user_id из клиента&lt;/font&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#E8F2FF;strokeColor=#2369AF;strokeWidth=2;align=center;verticalAlign=middle;spacing=6;fontFamily=Arial;fontSize=17;fontColor=#18304B;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="2050" y="590" width="344" height="160" />
+        </mxCell>
+        <mxCell id="legend" value="Отчёт доступен только после успешного ETL за каждый день запрошенного периода. Неполный период → HTTP 409." style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=17;fontColor=#253D57;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="265" y="1170" width="2100" height="53" />
+        </mxCell>
+        <mxCell id="01" value="использует" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;fontColor=#42536A;fontSize=14;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="patient" target="mobile">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="02" value="тестирует" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;fontColor=#42536A;fontSize=14;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="patient" target="web">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="03" value="HTTPS + cookie" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;fontColor=#42536A;fontSize=14;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="mobile" target="reportapi">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="04" value="HTTPS + cookie" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;fontColor=#42536A;fontSize=14;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="web" target="reportapi">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="05" value="OAuth Code + PKCE" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;fontColor=#42536A;fontSize=14;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="reportapi" target="keycloak">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="06" value="federation" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;fontColor=#42536A;fontSize=14;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="keycloak" target="idp">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="07" value="identity metadata" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;fontColor=#42536A;fontSize=14;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="keycloak" target="keycloak_db">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="08" value="server-side session" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;fontColor=#42536A;fontSize=14;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="reportapi" target="session">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="09" value="проверка ownership" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;fontColor=#42536A;fontSize=14;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="reportapi" target="crm">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="10" value="4G / TLS" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;fontColor=#42536A;fontSize=14;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="device" target="telemetry_ingest">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="11" value="запись событий" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;fontColor=#42536A;fontSize=14;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="telemetry_ingest" target="telemetry_db">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="12" value="extract users + devices" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;fontColor=#42536A;fontSize=14;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="crm" target="airflow">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="890" y="710" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="13" value="extract readings" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;fontColor=#42536A;fontSize=14;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="telemetry_db" target="airflow">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="14" value="витрина + watermark" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;fontColor=#42536A;fontSize=14;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="airflow" target="clickhouse">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="15" value="SELECT готового отчёта" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;fontColor=#42536A;fontSize=14;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="reportapi" target="clickhouse">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1160" y="520" />
+              <mxPoint x="1840" y="520" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="16" value="deny-by-default" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#64748B;fontColor=#42536A;fontSize=14;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=5 4;" edge="1" parent="1" source="reportapi" target="note">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
